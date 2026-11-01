@@ -21,13 +21,14 @@ async function load() {
   $('mode').textContent = d.mode === 'live' ? 'Midware live' : 'Dati demo';
   const k = d.kpi;
   $('kpis').innerHTML = [
-    ['Fatturato', eur(k.revenue)], ['Documenti', k.documents], ['Clienti attivi', k.customers],
-    ['Valore medio', eur(k.avgDocument)], ['Margine', k.margin == null ? '—' : k.margin + ' %'],
+    ['Incasso', eur(k.revenue)], ['Documenti', k.documents], ['Scontrino medio', eur(k.avgDocument)],
+    ['Articoli venduti', k.items.toLocaleString('it-IT')], ['Margine', k.margin == null ? '—' : k.margin + ' %'],
   ].map(([l, v]) => `<div class="card kpi"><small>${l}</small><b>${v}</b></div>`).join('');
-  draw('c1', { type: 'line', data: { labels: d.monthly.labels, datasets: [{ label: 'Fatturato', data: d.monthly.values, borderColor: PAL[0], backgroundColor: PAL[0] + '33', fill: true, tension: .3 }] }, options: { plugins: { legend: { display: false } } } });
-  draw('c2', { type: 'bar', data: { labels: d.topCustomers.labels, datasets: [{ data: d.topCustomers.values, backgroundColor: PAL[1] }] }, options: { indexAxis: 'y', plugins: { legend: { display: false } } } });
-  draw('c3', { type: 'doughnut', data: { labels: d.byCategory.labels, datasets: [{ data: d.byCategory.values, backgroundColor: PAL, borderWidth: 0 }] }, options: { plugins: { legend: { position: 'bottom' } } } });
-  $('rows').innerHTML = d.recent.map((x) => `<tr><td>${esc(x.number)}</td><td>${esc(x.date)}</td><td>${esc(x.customer)}</td><td>${esc(x.category)}</td><td class="n">${eur(x.amount)}</td></tr>`).join('');
+  draw('c1', { type: 'line', data: { labels: d.monthly.labels, datasets: [{ label: 'Incasso', data: d.monthly.values, borderColor: PAL[0], backgroundColor: PAL[0] + '33', fill: true, tension: .3 }] }, options: { plugins: { legend: { display: false } } } });
+  draw('c2', { type: 'bar', data: { labels: d.topProducts.labels, datasets: [{ data: d.topProducts.values, backgroundColor: PAL[1] }] }, options: { indexAxis: 'y', plugins: { legend: { display: false } } } });
+  const donut = (id, s) => draw(id, { type: 'doughnut', data: { labels: s.labels, datasets: [{ data: s.values, backgroundColor: PAL, borderWidth: 0 }] }, options: { plugins: { legend: { position: 'bottom' } } } });
+  donut('c3', d.byDepartment); donut('c4', d.byPayment);
+  $('rows').innerHTML = d.recent.map((x) => `<tr><td>${esc(x.number)}</td><td>${esc(x.date)}</td><td>${esc(x.type)}</td><td>${esc(x.pos)}</td><td class="n">${eur(x.total)}</td></tr>`).join('');
 }
 $('go').onclick = load;
 $('out').onclick = async () => { await fetch('/api/logout', { method: 'POST' }); location.href = '/'; };
