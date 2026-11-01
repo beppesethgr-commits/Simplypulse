@@ -5,7 +5,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "adduser": "node server/adduser.js"
+    "adduser": "node server/adduser.js",
+    "diagnose": "node tools/diagnose.js"
   },
   "license": "ISC",
   "dependencies": {

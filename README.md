@@ -21,3 +21,6 @@ Se il certificato è autofirmato, `MIDWARE_INSECURE_TLS=true`. Le chiamate parto
 
 Il server deve poter raggiungere il WService in rete (stessa LAN o VPN).
 I filtri per data non sono documentati: i documenti vengono letti e filtrati dal server (con cache di 60 s).
+
+## Diagnostica
+`npm run diagnose` si collega al WService, misura i tempi e scrive `diagnose-report.txt` con struttura dei campi, conteggi e somme di controllo (nessun dato personale, utente o password).

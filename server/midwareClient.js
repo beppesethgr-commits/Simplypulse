@@ -85,4 +85,4 @@ async function fetchDocuments(from, to) {
   }
   return cache.docs.filter((d) => d.date >= from && d.date <= to);
 }
-module.exports = { fetchDocuments };
+module.exports = { fetchDocuments, getRawDocuments };
