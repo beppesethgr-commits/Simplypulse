@@ -1,0 +1,16 @@
+{
+  "name": "simplypulse",
+  "version": "1.0.0",
+  "description": "Dashboard web con grafici e login, collegata al database SimplyDevelop tramite il web service Midware",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "adduser": "node server/adduser.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1"
+  }
+}

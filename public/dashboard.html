@@ -1,0 +1,14 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SimplyPulse</title><link rel="stylesheet" href="/styles.css"></head>
+<body><header><div class="brand">Simply<span>Pulse</span> <span class="badge" id="mode"></span></div>
+<div class="bar"><label>Dal <input type="date" id="from"></label><label>al <input type="date" id="to"></label>
+<button id="go">Aggiorna</button><span id="user" style="color:var(--mut)"></span><button class="ghost" id="out">Esci</button></div></header>
+<main><div class="err" id="err"></div>
+<section class="kpis" id="kpis"></section>
+<section class="grid">
+<div class="card wide"><h3>Fatturato mensile</h3><div class="chart"><canvas id="c1"></canvas></div></div>
+<div class="card"><h3>Top clienti</h3><div class="chart"><canvas id="c2"></canvas></div></div>
+<div class="card"><h3>Per categoria</h3><div class="chart"><canvas id="c3"></canvas></div></div>
+<div class="card wide"><h3>Ultimi documenti</h3><div class="table-wrap"><table><thead><tr><th>Numero</th><th>Data</th><th>Cliente</th><th>Categoria</th><th class="n">Importo</th></tr></thead><tbody id="rows"></tbody></table></div></div>
+</section></main>
+<script src="/vendor/chart.umd.js"></script><script src="/app.js"></script></body></html>
